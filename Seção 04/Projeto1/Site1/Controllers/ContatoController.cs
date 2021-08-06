@@ -13,8 +13,14 @@ namespace Site1.Controllers {
 
         public IActionResult ReceberContato([FromForm] Contato contato) {
 
-            string conteudo = string.Format("Nome: {0}, Email: {1}, Assunto: {2}, Mensagem: {3}", contato.Nome, contato.Email, contato.Assunto, contato.Mensagem);
-            return new ContentResult() { Content = conteudo };
+            if (ModelState.IsValid) {
+                string conteudo = string.Format("Nome: {0}, Email: {1}, Assunto: {2}, Mensagem: {3}", contato.Nome, contato.Email, contato.Assunto, contato.Mensagem);
+                return new ContentResult() { Content = conteudo };
+            } else {
+                return View("Index");
+            }
+
+           
         }
 
         /* Obter Dados Manualmente
