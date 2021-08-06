@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 namespace Site1.Controllers {
     public class ContatoController : Controller {
         public IActionResult Index() {
+            ViewBag.Contato = new Contato();
+
             return View();
         }
 
@@ -20,11 +22,13 @@ namespace Site1.Controllers {
 
                 EnviarEmail.EnviarMensagemContato(contato);
 
+                ViewBag.Contato = new Contato();
                 ViewBag.Mesagem = "Mensagem enviada com sucesso!";
                 return View("Index");
 
             } else {
 
+                ViewBag.Contato = contato;
                 return View("Index");
 
             }
