@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Site1.Database;
 using Site1.Models;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,15 @@ using System.Threading.Tasks;
 namespace Site1.Controllers {
     public class PalavraController : Controller {
 
+        private DatabaseContext _db;
+
+        public PalavraController(DatabaseContext db) {
+            _db = db;
+        }
+
         //Listar todas as palavras do banco de dados
         public IActionResult Index() {
+            ViewBag.Palavras = _db.Palavras.ToList();
             return View();
         }
 

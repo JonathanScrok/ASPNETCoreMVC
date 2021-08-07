@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Site1.Database;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +16,10 @@ namespace Site1 {
         public void ConfigureServices(IServiceCollection services) {
             
             services.AddMvc();
+            services.AddDbContext<DatabaseContext>(options=> {
+                //Providers - Bibliotecas Conexões com Bancos - SqlServer, MySQL, Oracle, Postgree, Firebird, DB2...
+                options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=site01;Integrated Security=True");
+            });
 
         }
 
