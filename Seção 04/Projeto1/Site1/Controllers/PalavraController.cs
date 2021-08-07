@@ -26,18 +26,20 @@ namespace Site1.Controllers {
 
         [HttpGet]
         public IActionResult Atualizar() {
-            return View();
+            return View("Cadastrar");
         }
 
         [HttpPost]
         public IActionResult Atualizar([FromForm] Palavra palavra) {
-            return View();
+            return View("Cadastrar");
         }
 
         //Palavra/Excluir/391
         //{controller}/{Action}/{Id?}
         [HttpGet]
         public IActionResult Excluir(int Id) {
+
+            //TODO - EXCLUIR REGISTRO NO BANCO
             return RedirectToAction("Index");
         }
 
