@@ -1,16 +1,18 @@
-﻿<html>
+﻿@model List<Site1.Models.Palavra>
+<html>
 <head>
     <title>Palavras</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
 
-    <span> <b>Total de Palavras:</b> @ViewBag.Palavras.Count</span>
+    
     <div class="container">
-        <a href="/palavra/cadastrar" class="btn btn-primary">Cadastrar</a>
-
+            <a href="/palavra/cadastrar" class="btn btn-primary">Cadastrar</a>
+        <br />
+        <span> <b>Total de Palavras:</b> @Model.Count</span>
         <table class="table">
-            <thead class="thead-dark">
+            <thead class="table-dark">
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Palavra</th>
@@ -19,15 +21,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Elefante</td>
-                    <td>Fácil</td>
-                    <td>
-                        <a href="/palavra/atualizar/1">Editar</a>
-                        <a href="/palavra/excluir/1">Excluir</a>
-                    </td>
-                </tr>
+                @foreach (var palavra in Model) {
+                    <tr>
+                        <th scope="row">@palavra.Id</th>
+                        <td>@palavra.Nome</td>
+                        <td>@palavra.Nivel</td>
+                        <td>
+                            <a href="/palavra/atualizar/@palavra.Id" class="btn">Editar</a>
+                            <a href="/palavra/excluir/@palavra.Id" class="btn">Excluir</a>
+                        </td>
+                    </tr>
+                }
+
             </tbody>
         </table>
 
