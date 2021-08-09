@@ -11,6 +11,6 @@ namespace Site1.Models {
         public string Nome { get; set; }
 
         //1-Fácil, 2-Médio, 3-Difícil
-        public byte Nivel { get; set; }
+        public byte? Nivel { get; set; }
     }
 }

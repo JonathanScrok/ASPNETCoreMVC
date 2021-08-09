@@ -25,22 +25,37 @@ namespace Site1.Controllers {
         //CRUD - Cadastrar, Consultar, Atualizar e Excluir. (Create, Reatrieve, Updade, Delete - CRUD)
         [HttpGet]
         public IActionResult Cadastrar() {
-            return View();
+            return View(new Palavra());
         }
 
         [HttpPost]
-        public IActionResult Cadastrar([FromForm]Palavra palavra) {
+        public IActionResult Cadastrar([FromForm] Palavra palavra) {
+
+            if (ModelState.IsValid) {
+                _db.Palavras.Add(palavra);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
         [HttpGet]
-        public IActionResult Atualizar() {
-            return View("Cadastrar");
+        public IActionResult Atualizar(int Id) {
+            Palavra palavra = _db.Palavras.Find(Id);
+
+            return View("Cadastrar", palavra);
         }
 
         [HttpPost]
         public IActionResult Atualizar([FromForm] Palavra palavra) {
-            return View("Cadastrar");
+            if (ModelState.IsValid) {
+                _db.Palavras.Update(palavra);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View("Cadastrar", palavra);
         }
 
         //Palavra/Excluir/391
@@ -49,6 +64,9 @@ namespace Site1.Controllers {
         public IActionResult Excluir(int Id) {
 
             //TODO - EXCLUIR REGISTRO NO BANCO
+            _db.Palavras.Remove(_db.Palavras.Find(Id));
+            _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
