@@ -1,35 +1,32 @@
-﻿<html>
-<head>
-    <title>Formulário de Contato</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-</head>
-<body>
-    <div class="container">
-        <form method="post" action="/contato/recebercontato">
-            <div class="form-group">
-                <label for="nome">Nome:</label>
-                <input type="text" name="nome" value="@ViewBag.Contato.Nome" class="form-control" id="nome" placeholder="Digite o seu nome">
-                @Html.ValidationMessage("nome")
-            </div>
-            <div class="form-group">
-                <label for="email">E-mail:</label>
-                <input type="text" name="email" value="@ViewBag.Contato.Email" class="form-control" id="email" placeholder="Exemplo@exemplo.com">
-                @Html.ValidationMessage("email")
-            </div>
-            <div class="form-group">
-                <label for="assunto">Assunto:</label>
-                <input type="text" name="assunto" value="@ViewBag.Contato.Assunto" class="form-control" id="assunto" placeholder="Digite o assunto">
-                @Html.ValidationMessage("assunto")
-            </div>
-            <div class="form-group">
-                <label for="mensagem">Mensagem:</label>
-                <textarea name="mensagem" class="form-control" id="mensagem">@ViewBag.Contato.Mensagem</textarea>
-                @Html.ValidationMessage("mensagem")
-            </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-
-        @ViewBag.Mesagem
+﻿@{
+    //Layout = "_Layout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewBag.Title = "Palavras - Contato";
+}
+<form method="post" action="/contato/recebercontato">
+    <div class="form-group">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" value="@ViewBag.Contato.Nome" class="form-control" id="nome" placeholder="Digite o seu nome">
+        @Html.ValidationMessage("nome")
     </div>
-</body>
-</html>
+    <div class="form-group">
+        <label for="email">E-mail:</label>
+        <input type="text" name="email" value="@ViewBag.Contato.Email" class="form-control" id="email" placeholder="Exemplo@exemplo.com">
+        @Html.ValidationMessage("email")
+    </div>
+    <div class="form-group">
+        <label for="assunto">Assunto:</label>
+        <input type="text" name="assunto" value="@ViewBag.Contato.Assunto" class="form-control" id="assunto" placeholder="Digite o assunto">
+        @Html.ValidationMessage("assunto")
+    </div>
+    <div class="form-group">
+        <label for="mensagem">Mensagem:</label>
+        <textarea name="mensagem" class="form-control" id="mensagem">@ViewBag.Contato.Mensagem</textarea>
+        @Html.ValidationMessage("mensagem")
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+
+@ViewBag.Mesagem
