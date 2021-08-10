@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Site1.Database;
+using Site1.Library.Filters;
 using Site1.Models;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Site1.Controllers {
+
+    [Login]
     public class PalavraController : Controller {
 
         private DatabaseContext _db;
