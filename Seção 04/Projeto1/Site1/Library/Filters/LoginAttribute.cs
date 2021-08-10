@@ -14,7 +14,6 @@ namespace Site1.Library.Filters {
             if (context.HttpContext.Session.GetString("Login") == null) {
                 context.Result = new RedirectToActionResult("Login", "Home", null);
             }
-            base.OnActionExecuting(context);
         }
     }
 }
