@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace Site1.Controllers {
 
@@ -19,10 +20,13 @@ namespace Site1.Controllers {
         }
 
         //Listar todas as palavras do banco de dados
-        public IActionResult Index() {
+        public IActionResult Index(int? page) {
+            var pageNumber = page ?? 1;
 
             var palavras = _db.Palavras.ToList();
-            return View(palavras);
+            var resultadoPaginado = palavras.ToPagedList(pageNumber, 5);
+
+            return View(resultadoPaginado);
         }
 
         //CRUD - Cadastrar, Consultar, Atualizar e Excluir. (Create, Reatrieve, Updade, Delete - CRUD)
