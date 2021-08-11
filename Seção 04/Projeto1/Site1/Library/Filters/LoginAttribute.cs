@@ -12,6 +12,13 @@ namespace Site1.Library.Filters {
         public override void OnActionExecuting(ActionExecutingContext context) {
             
             if (context.HttpContext.Session.GetString("Login") == null) {
+
+                if (context.Controller != null) {
+
+                    Controller controlador = context.Controller as Controller;
+                    controlador.TempData["MensagemErro"] = "Faça o Login para ter permissão de acessar esta página!";
+                }
+
                 context.Result = new RedirectToActionResult("Login", "Home", null);
             }
         }

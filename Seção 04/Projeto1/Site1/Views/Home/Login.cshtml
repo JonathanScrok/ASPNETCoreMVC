@@ -6,6 +6,12 @@
     ViewBag.Title = "Login";
 }
 
+@if (TempData["MensagemErro"] != null) {
+    <div class="alert alert-danger" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
 <form method="post" action="/home/login">
     <div class="form-group">
         <label for="email">E-mail:</label>

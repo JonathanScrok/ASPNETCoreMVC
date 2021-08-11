@@ -38,6 +38,8 @@ namespace Site1.Controllers {
                 _db.Palavras.Add(palavra);
                 _db.SaveChanges();
 
+                TempData["Mensagem"] = "A palavra "+palavra.Nome+" foi cadastrada com sucesso!";
+
                 return RedirectToAction("Index");
             }
 
@@ -56,6 +58,9 @@ namespace Site1.Controllers {
             if (ModelState.IsValid) {
                 _db.Palavras.Update(palavra);
                 _db.SaveChanges();
+
+                TempData["Mensagem"] = "A palavra " + palavra.Nome + " foi atualizada com sucesso!";
+
                 return RedirectToAction("Index");
             }
             return View("Cadastrar", palavra);
@@ -66,9 +71,12 @@ namespace Site1.Controllers {
         [HttpGet]
         public IActionResult Excluir(int Id) {
 
+            Palavra palavra = _db.Palavras.Find(Id);
             //TODO - EXCLUIR REGISTRO NO BANCO
-            _db.Palavras.Remove(_db.Palavras.Find(Id));
+            _db.Palavras.Remove(palavra);
             _db.SaveChanges();
+
+            TempData["Mensagem"] = "A palavra " + palavra.Nome + " foi excluida com sucesso!";
 
             return RedirectToAction("Index");
         }
