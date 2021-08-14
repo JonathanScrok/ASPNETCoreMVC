@@ -55,7 +55,7 @@ namespace Site1.Controllers {
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(palavra);
         }
 
         [HttpGet]
