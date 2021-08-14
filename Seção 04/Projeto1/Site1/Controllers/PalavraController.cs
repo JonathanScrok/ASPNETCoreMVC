@@ -13,10 +13,15 @@ namespace Site1.Controllers {
     [Login]
     public class PalavraController : Controller {
 
+        List<Nivel> niveis = new List<Nivel>();
         private DatabaseContext _db;
 
         public PalavraController(DatabaseContext db) {
             _db = db;
+
+            niveis.Add(new Nivel() { Id = 1, Nome = "Fácil" });
+            niveis.Add(new Nivel() { Id = 2, Nome = "Médio" });
+            niveis.Add(new Nivel() { Id = 3, Nome = "Difícil" });
         }
 
         //Listar todas as palavras do banco de dados
@@ -32,11 +37,14 @@ namespace Site1.Controllers {
         //CRUD - Cadastrar, Consultar, Atualizar e Excluir. (Create, Reatrieve, Updade, Delete - CRUD)
         [HttpGet]
         public IActionResult Cadastrar() {
+            ViewBag.Nivel = niveis;
             return View(new Palavra());
         }
 
         [HttpPost]
         public IActionResult Cadastrar([FromForm] Palavra palavra) {
+            
+            ViewBag.Nivel = niveis;
 
             if (ModelState.IsValid) {
                 _db.Palavras.Add(palavra);
@@ -52,6 +60,9 @@ namespace Site1.Controllers {
 
         [HttpGet]
         public IActionResult Atualizar(int Id) {
+
+            ViewBag.Nivel = niveis;
+
             Palavra palavra = _db.Palavras.Find(Id);
 
             return View("Cadastrar", palavra);
@@ -59,6 +70,9 @@ namespace Site1.Controllers {
 
         [HttpPost]
         public IActionResult Atualizar([FromForm] Palavra palavra) {
+
+            ViewBag.Nivel = niveis;
+
             if (ModelState.IsValid) {
                 _db.Palavras.Update(palavra);
                 _db.SaveChanges();
