@@ -4,6 +4,6 @@ LABEL version="1.0" maintainer="Jonathanscrok"
 
 WORKDIR /app
 
-COPY .src/Site1/dist.
+COPY .src/Projeto1/Site1.
 
 ENTRYPOINT ["dotnet","Site1.dll"]
