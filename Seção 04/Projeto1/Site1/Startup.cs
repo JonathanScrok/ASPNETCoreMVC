@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Sqlite;
 
 namespace Site1 {
     public class Startup {
@@ -18,7 +19,9 @@ namespace Site1 {
             services.AddMvc();
             services.AddDbContext<DatabaseContext>(options=> {
                 //Providers - Bibliotecas Conexões com Bancos - SqlServer, MySQL, Oracle, Postgree, Firebird, DB2...
-                options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=site01;Integrated Security=True");
+                //options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=site01;Integrated Security=True");
+
+                options.UseSqlite("Data Source=Database\\site01.db");
             });
 
             services.AddDistributedMemoryCache();
