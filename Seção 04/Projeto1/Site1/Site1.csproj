@@ -5,10 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Dockerfile" />
     <None Remove="DockerImg\Dockerfile" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Dockerfile" />
     <Compile Include="DockerImg\Dockerfile" />
   </ItemGroup>
 
